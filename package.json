@@ -1,0 +1,26 @@
+{
+  "name": "gana-js",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --build tsconfig.json",
+    "start": "node ./build/src/index.js",
+    "dev": "nodemon --watch src/ --ext js,ts  --exec 'npx' 'ts-node' src/index.ts",
+    "lint": "eslint . --ext .{ts,tsx,js,jsx}'",
+    "lint:fix": "eslint --fix --ext .{ts,tsx,js,jsx}'"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.3.1",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint": "8.43.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.7.0",
+    "typescript": "^5.1.3"
+  }
+}
