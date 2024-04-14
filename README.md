@@ -22,5 +22,10 @@ idk, but it was fun.
 - on question
   - input pronunciation as english. for example, `ひ` for `hi`
   - you can still input command
+  - exit: `exit`
 -settings
-  - toggle sound: `set sound` or `set s` (default is off)
+  - show correct answer: `set show` (default is on). if you input wrong answer, it will show correct answer.
+  - set correct answer streak: `set streak <number>` (default is 8). if you answer correct <number> times in a row, it will not show as question anymore.
+  - erase all data: `set erase`
+    - erase hiragana data: `set erase hi`
+    - erase katakana data: `set erase ga`
