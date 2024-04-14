@@ -18,7 +18,11 @@ type Params = {
 const getRandomKana = ({
   excludeIndices = [],
   isKatakana,
-}: Params): object | undefined => {
+}: Params):
+  | (Kana & {
+      index: number;
+    })
+  | undefined => {
   if (excludeIndices.length >= KANA_LENGTH) {
     return;
   }
@@ -36,17 +40,15 @@ const getRandomKana = ({
   }
 
   if (isKatakana) {
-    return getKatakana(randomIndex);
+    return {
+      ...katakana[randomIndex],
+      index: randomIndex,
+    };
   }
-  return getHiragana(randomIndex);
-};
-
-const getHiragana = (index: number): Kana => {
-  return hiragana[index] as Kana;
-};
-
-const getKatakana = (index: number): Kana => {
-  return katakana[index] as Kana;
+  return {
+    ...hiragana[randomIndex],
+    index: randomIndex,
+  };
 };
 
 export default getRandomKana;
