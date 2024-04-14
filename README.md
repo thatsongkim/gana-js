@@ -17,13 +17,8 @@ idk, but it was fun.
 ### commands
 
 - on start
-    - select hiragana: `hi` or `h`
-    - select gatagana: `ga` or `g`
-- common
-    - restart app(to select mode): `restart`
-    - erase all data: `erase` and `y` or `n` to cancel
-    - erase hiragana data: `erase hi` or `erase h` and `y` or `n` to cancel
-    - erase gatagana data: `erase ga` or `erase g` and `y` or `n` to cancel
+    - select hiragana: `hi`
+    - select katakana: `ga`
 - on question
   - input pronunciation as english. for example, `ひ` for `hi`
   - you can still input command
