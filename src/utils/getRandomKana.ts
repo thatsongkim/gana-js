@@ -37,6 +37,11 @@ const getRandomKana = ({
 
   if (randomIndex >= KANA_LENGTH) {
     randomIndex = 0;
+    for (const excludeIndex of excludeIndices) {
+      if (randomIndex === excludeIndex) {
+        randomIndex++;
+      }
+    }
   }
 
   if (isKatakana) {

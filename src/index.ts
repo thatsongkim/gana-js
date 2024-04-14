@@ -1,4 +1,4 @@
-import { DEFAULT_REQUIRED_STREAK } from './constants';
+import { DEFAULT_REQUIRED_STREAK, KANA_LENGTH } from './constants';
 import * as fs from 'fs';
 import * as readline from 'readline';
 import getRandomKana from './utils/getRandomKana';
@@ -49,6 +49,17 @@ const defaultHistory: History = {
   console.clear();
 
   while (true) {
+    console.log(history.solvedIndices[isKatakana ? 'katakana' : 'hiragana']);
+    console.log(
+      history.solvedIndices[isKatakana ? 'katakana' : 'hiragana'].length,
+    );
+    if (
+      history.solvedIndices[isKatakana ? 'katakana' : 'hiragana'].length >=
+      KANA_LENGTH
+    ) {
+      console.log('All kana have been solved.');
+      break;
+    }
     const kana = getRandomKana({
       excludeIndices:
         history.solvedIndices[isKatakana ? 'katakana' : 'hiragana'],
@@ -62,15 +73,15 @@ const defaultHistory: History = {
       break;
     }
     if (answer.startsWith('set')) {
-      const [_, command, ...args] = answer.split(' ');
-      if (command === 'streak') {
-        history.requiredStreak = parseInt(args?.[0] || '8');
+      const command = answer.split(' ');
+      if (command[1] === 'streak') {
+        history.requiredStreak = parseInt(command[2] || '8');
         continue;
-      } else if (command === 'erase') {
-        if (args?.[0] === 'hi') {
+      } else if (command[1] === 'erase') {
+        if (command[2] === 'hi') {
           history.solvedIndices.hiragana = [];
           continue;
-        } else if (args?.[0] === 'ga') {
+        } else if (command[2] === 'ga') {
           history.solvedIndices.katakana = [];
           continue;
         }
@@ -92,7 +103,9 @@ const defaultHistory: History = {
         history.solvedIndices[isKatakana ? 'katakana' : 'hiragana'].push(
           kana.index,
         );
-        delete correctStreaks[kana.romaji];
+        history.solvedIndices[isKatakana ? 'katakana' : 'hiragana'].sort(
+          (a, b) => a - b,
+        );
         console.log(
           kana?.kana + ' reached ' + history.requiredStreak + ' streak!',
         );
@@ -106,8 +119,9 @@ const defaultHistory: History = {
         );
       }
     } else {
+      console.clear();
+      delete correctStreaks?.[kana?.romaji || ''];
       if (history.showsCorrectAnswer) {
-        console.clear();
         console.log(
           'Correct answer for ' + kana?.kana + ' was ' + kana?.romaji,
         );
