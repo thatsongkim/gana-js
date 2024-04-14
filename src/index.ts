@@ -48,21 +48,20 @@ const defaultHistory: History = {
 
   console.clear();
 
+  let solvedIndices =
+    history.solvedIndices[isKatakana ? 'katakana' : 'hiragana'];
+
+  if (solvedIndices.length >= KANA_LENGTH) {
+    solvedIndices = [];
+  }
+
   while (true) {
-    console.log(history.solvedIndices[isKatakana ? 'katakana' : 'hiragana']);
-    console.log(
-      history.solvedIndices[isKatakana ? 'katakana' : 'hiragana'].length,
-    );
-    if (
-      history.solvedIndices[isKatakana ? 'katakana' : 'hiragana'].length >=
-      KANA_LENGTH
-    ) {
+    if (solvedIndices.length >= KANA_LENGTH) {
       console.log('All kana have been solved.');
       break;
     }
     const kana = getRandomKana({
-      excludeIndices:
-        history.solvedIndices[isKatakana ? 'katakana' : 'hiragana'],
+      excludeIndices: solvedIndices,
       isKatakana,
     });
 
@@ -100,12 +99,8 @@ const defaultHistory: History = {
       }
 
       if (correctStreaks[kana.romaji] >= history.requiredStreak) {
-        history.solvedIndices[isKatakana ? 'katakana' : 'hiragana'].push(
-          kana.index,
-        );
-        history.solvedIndices[isKatakana ? 'katakana' : 'hiragana'].sort(
-          (a, b) => a - b,
-        );
+        solvedIndices.push(kana.index);
+        solvedIndices.sort((a, b) => a - b);
         console.log(
           kana?.kana + ' reached ' + history.requiredStreak + ' streak!',
         );
@@ -128,6 +123,8 @@ const defaultHistory: History = {
       }
     }
   }
+
+  history.solvedIndices[isKatakana ? 'katakana' : 'hiragana'] = solvedIndices;
 
   rl.close();
   fs.writeFileSync('history.json', JSON.stringify(history, null, 2));
