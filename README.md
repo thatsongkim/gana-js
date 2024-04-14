@@ -1,4 +1,4 @@
-# gana-js
+# kana-js
 
 ## what is this?
 
@@ -6,7 +6,7 @@ simple node app for learning japanese hiragana and katakana.
 
 ## why...???
 
-i wanted to learn gana at a low cost.
+i wanted to learn kana at a low cost.
 
 ## low cost? really?
 

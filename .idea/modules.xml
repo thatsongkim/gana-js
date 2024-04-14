@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/gana-js.iml" filepath="$PROJECT_DIR$/.idea/gana-js.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/kana-js.iml" filepath="$PROJECT_DIR$/.idea/kana-js.iml" />
     </modules>
   </component>
 </project>
